@@ -69,3 +69,48 @@ GRAFT is a Generative AI fine-tuning and deployment framework.
 ✅ **Optimized Performance & Cost Reduction** – Implements quantization & intelligent model refinement  
 ✅ **Scalability & Integration** – API-based architecture for seamless service integration  
 
+---
+
+
+## Supported PEFT & Memory Optimization Techniques Comparison
+
+| Technique | Type | Purpose | Memory Savings | Speed Impact | Features |
+|---|---|---|---|---|---|
+| **LoRA (Low-Rank Adaptation)** | PEFT | Update only a subset of weights | 🔵🔵🔵🔵🟢 (Up to 90%) | ⬆️ Fast | Fine-tunes FFN & attention weights with minimal changes |
+| **DoRA (Decoupled LoRA)** | PEFT | Improved LoRA (decouples FFN and MHA) | 🔵🔵🔵🟢🟢 (Up to 80%) | ⬆️ Fast | More precise fine-tuning than LoRA |
+| **QLoRA (Quantized LoRA)** | PEFT + Quantization | 4-bit quantization + LoRA | 🔵🔵🔵🔵🔵 (Up to 95%) | ⬇️ Slightly slower | Enables training large models (33B+) on low-spec GPUs |
+| **QDoRA (Quantized DoRA)** | PEFT + Quantization | Combination of QLoRA + DoRA | 🔵🔵🔵🔵🟢 (Up to 90%) | ⬇️ Slightly slower | Compresses LoRA & DoRA into 4-bit |
+| **Adapters (Adapter-Tuning)** | PEFT | Train only specific layers | 🔵🔵🔵🟢🟢 (Up to 70%) | ⬆️ Fast | More versatile than LoRA, applicable to vision & NLP |
+| **Prompt Tuning** | PEFT | Modify input prompts | 🔵🔵🔵🟢🟢 (Up to 70%) | ⬆️ Fast | Optimizes prompts without changing the model |
+| **Prefix Tuning** | PEFT | Prompt + additional trainable vectors | 🔵🔵🟢🟢🟢 (Up to 60%) | ⬆️ Fast | Adjusts attention keys/values with minimal parameters |
+| **P-Tuning (Prompt Tuning v2)** | PEFT | Improved Prefix Tuning | 🔵🔵🔵🟢🟢 (Up to 70%) | ⬆️ Fast | Applies to lower layers, effective in multilingual tasks |
+| **ZeRO-1 (Zero Redundancy Optimizer)** | Memory Optimization | Distributes optimizer states | 🔵🔵🟢🟢🟢 (Up to 50%) | ⬆️ Fast | Useful in multi-GPU environments |
+| **ZeRO-2** | Memory Optimization | Distributes optimizer + gradients | 🔵🔵🔵🟢🟢 (Up to 60%) | ⬆️ Fast | Further reduces memory usage |
+| **ZeRO-3** | Memory Optimization | Distributes parameters as well | 🔵🔵🔵🔵🟢 (Up to 75%) | ⬇️ Slightly slower | Spreads entire model across multiple GPUs |
+| **Offloading (CPU/NVMe Offload)** | Memory Optimization | Uses CPU/NVMe when GPU is limited | 🔵🔵🔵🔵🔵 (Up to 80%) | ⬇️ Slower | Enables LLM training on low-end GPUs |
+| **Gradient Checkpointing** | Memory Optimization | Reduces activation memory | 🔵🔵🔵🟢🟢 (Up to 50%) | ⬇️ Slightly slower | Recomputes some activation values |
+
+---
+
+## Best Practices: Recommended Optimal Combinations
+
+### RTX 3090/4090 (Below 24GB VRAM)
+- **QLoRA + ZeRO-3 + CPU Offloading + Gradient Checkpointing** → **Supports models up to 13B**
+
+### A100 40GB
+- **LoRA + ZeRO-3 + Gradient Checkpointing** → **Supports models up to 30B**
+
+### A100 80GB / H100
+- **Full Fine-tuning + ZeRO-3 + Offloading** → **Supports models from 65B to 175B**
+
+---
+
+## Low-Cost Fine-Tuning Options
+- **QLoRA / QDoRA + Gradient Checkpointing**
+- **Prompt Tuning (Prompt Tuning, Prefix Tuning, P-Tuning)**
+
+## Essential for Large Model Training
+- **ZeRO-3 + Offloading + Gradient Checkpointing**
+
+
+
