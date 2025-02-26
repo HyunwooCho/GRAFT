@@ -1,5 +1,17 @@
-# **GRAFT: Generative AI Refinement & Fine-Tuning Toolkit**  
-**GRAFT** is a GenAIOps framework designed to **graft** and **fine-tune** Generative AI models for domain-specific applications, ensuring optimal performance and seamless deployment.  
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/HyunwooCho/GRAFT/main/docs/media/GRAFT_logo.png" width="200"></td>
+    <td>
+      <h3>GRAFT: Generative AI Refinement & Fine-Tuning Toolkit</h3>
+      <p> GRAFT is a GenAIOps framework designed to graft and fine-tune Generative AI models for domain-specific applications, ensuring optimal performance and seamless deployment. </p>
+    </td>
+  </tr>
+</table>
+
+
+# GRAFT Framework  
+
+GRAFT is a Generative AI fine-tuning and deployment framework.  
 
 ## 🔹 **Meaning & Philosophy**  
 - The term **"Graft"** symbolizes the **integration and adaptation of a powerful Generative AI model to specific domains**.  
