@@ -87,8 +87,8 @@ GRAFT is a Generative AI fine-tuning and deployment framework.
 | **ZeRO-1 (Zero Redundancy Optimizer)** | Memory Optimization | Distributes optimizer states | 🔵🔵🟢🟢🟢 (Up to 50%) | ⬆️ Fast | Useful in multi-GPU environments |
 | **ZeRO-2** | Memory Optimization | Distributes optimizer + gradients | 🔵🔵🔵🟢🟢 (Up to 60%) | ⬆️ Fast | Further reduces memory usage |
 | **ZeRO-3** | Memory Optimization | Distributes parameters as well | 🔵🔵🔵🔵🟢 (Up to 75%) | ⬇️ Slightly slower | Spreads entire model across multiple GPUs |
-| **Offloading (CPU/NVMe Offload)** | Memory Optimization | Uses CPU/NVMe when GPU is limited | 🔵🔵🔵🔵🔵 (Up to 80%) | ⬇️ Slower | Enables LLM training on low-end GPUs |
-| **Gradient Checkpointing** | Memory Optimization | Reduces activation memory | 🔵🔵🔵🟢🟢 (Up to 50%) | ⬇️ Slightly slower | Recomputes some activation values |
+| **Offloading (CPU/NVMe Offload)** | Memory Optimization | Uses CPU/NVMe when GPU is limited | 🔵🔵🔵🟢🟢 (Up to 80%) | ⬇️ Slower | Enables LLM training on low-end GPUs |
+| **Gradient Checkpointing** | Memory Optimization | Reduces activation memory | 🔵🔵🟢🟢🟢 (Up to 50%) | ⬇️ Slightly slower | Recomputes some activation values |
 
 ---
 
