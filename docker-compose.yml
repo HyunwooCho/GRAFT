@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+      - DATABASE_URL=${DATABASE_URL}
+      - TUNER_HOST=http://tuner:8001
+    volumes:
+      - ./api:/app
+    depends_on:
+      - tuner
+
+  tuner:
+    build:
+      context: ./tuner
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      # - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+      # - DATABASE_URL=${DATABASE_URL}
+      # - AWS_ACCESS_KEY_ID=your-access-key
+      # - AWS_SECRET_ACCESS_KEY=your-secret-key
+      # - S3_BUCKET_NAME=your-bucket-name
+      - S3_MODEL_PATH=models/
+    volumes:
+      - ./tuner:/app
+      - models:/app/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  models:

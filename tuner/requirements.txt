@@ -1,0 +1,9 @@
+torch
+transformers
+datasets
+huggingface_hub
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+boto3
