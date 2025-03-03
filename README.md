@@ -9,17 +9,17 @@
 </table>
 
 
-# GRAFT Framework  
+# GRAFT (Generative AI Refinement & Fine-Tuning Toolkit)
 
-GRAFT is a Generative AI fine-tuning and deployment framework.  
+GRAFT is an open-source framework designed to streamline **LLM downloading, fine-tuning, and benchmarking** with support for **multi-GPU training and modular execution**.
 
-## 🔹 **Meaning & Philosophy**  
+## Meaning & Philosophy
 - The term **"Graft"** symbolizes the **integration and adaptation of a powerful Generative AI model to specific domains**.  
 - The **core goal** of the framework is to **preserve Generative AI’s strengths while enabling effortless domain-specific customization**.  
 
 ---
 
-## **🔧 Core Components of GRAFT**  
+## Core Components of GRAFT
 
 | Component | Description |
 |-----------|------------|
@@ -31,7 +31,7 @@ GRAFT is a Generative AI fine-tuning and deployment framework.
 
 ---
 
-## **🛠 Key Features of GRAFT**  
+## Key Goals of GRAFT  
 
 1. **Domain-Specific Fine-Tuning**  
    - Adapts pre-trained Generative AI models to specific industries (e.g., healthcare, finance, gaming, design)  
@@ -51,25 +51,92 @@ GRAFT is a Generative AI fine-tuning and deployment framework.
 
 ---
 
-## **🚀 Use Cases for GRAFT**  
 
-| Domain | Application |
-|--------|------------|
-| **Healthcare** | AI-driven medical document generation & patient data adaptation |
-| **Coding** | AI-powered code completion, debugging assistance, and repository-based fine-tuning |
-| **Smart Home** | AI-driven home automation, personalized voice assistants, and energy optimization |
-| **Academic Research** | AI-assisted literature review & and scientific data analysis |
-| **Design** | Brand-specific fine-tuning for text-to-image models |
+
+## Main Features of GRAFT
+
+- **Web App & Python Package Support** - Run as an API-powered web UI or via CLI
+- **Selective LLM Model Download** - Choose and manage Hugging Face models
+- **PEFT-based Fine-Tuning (LoRA, QLoRA)** - Efficient fine-tuning with reduced memory usage
+- **Multi-GPU Training (PyTorch DDP)** - Optimized distributed training on a single node
+- **Benchmarking & Visualization** - Monitor results with Vega-Lite dashboard
+
+---
+
+## 🏗️ Installation & Usage
+
+### 1️⃣ Python Package Mode
+
+#### 🔹 Install
+
+```sh
+pip install graft-ai
+```
+
+#### 🔹 CLI Execution
+
+```sh
+graft download --model llama-2-7b
+graft train --model llama-2-7b --dataset dataset.json
+graft benchmark --model llama-2-7b
+```
+
+#### 🔹 Python Code Usage
+
+```python
+from graft.core import ModelManager
+
+manager = ModelManager()
+model = manager.download("llama-2-7b")
+manager.fine_tune(model, "dataset.json")
+manager.benchmark(model)
+```
+
+
+### 2️⃣ Web App Mode
+
+#### 🔹 Run with Docker
+
+```sh
+docker-compose up --build
+```
+
+#### 🔹 Access Web UI
+
+```
+http://localhost:3000
+```
+
+#### 🔹 API Endpoints (FastAPI)
+
+| Method | Endpoint           | Description             |
+| ------ | ------------------ | ----------------------- |
+| `GET`  | `/models`          | List available models   |
+| `POST` | `/models/download` | Download an LLM model   |
+| `POST` | `/models/train`    | Fine-tune a model       |
+| `GET`  | `/models/progress` | Check training progress |
 
 ---
 
-## **🌟 Advantages of GRAFT**  
-✅ **Fast & Efficient Fine-Tuning** – Quickly adapts AI models to new domains  
-✅ **Flexible MLOps Support** – Compatible with on-premises, cloud, and hybrid environments  
-✅ **Optimized Performance & Cost Reduction** – Implements quantization & intelligent model refinement  
-✅ **Scalability & Integration** – API-based architecture for seamless service integration  
+## Technology Stack & Justification
+
+| **Service**                     | **Technology Stack**          | **Justification**                                    |
+| ------------------------------- | ----------------------------- | ---------------------------------------------------- |
+| **API (Web Mode)**              | **FastAPI**                   | Provides API endpoints for model management          |
+|                                 | **Celery**                    | Handles background tasks (fine-tuning, benchmarking) |
+|                                 | **Redis**                     | Message broker for distributed task processing       |
+| **Python Package (CLI/Script)** | **Hugging Face Transformers** | Handles LLM downloading and model loading            |
+|                                 | **PEFT (LoRA, QLoRA)**        | Optimizes LLM fine-tuning with reduced memory usage  |
+|                                 | **PyTorch (DDP)**             | Supports multi-GPU distributed training              |
+|                                 | **BitsAndBytes**              | Supports quantization for memory efficiency          |
+| **Frontend**                    | **Next.js (React)**           | Provides an interactive UI                           |
+| **Database**                    | **PostgreSQL**                | Stores structured data related to LLM processing     |
+| **Infrastructure**              | **Docker & Docker Compose**   | Supports microservices deployment                    |
+
+
 
 ---
+
 
 
 ## Supported PEFT & Memory Optimization Techniques Comparison
@@ -111,6 +178,35 @@ GRAFT is a Generative AI fine-tuning and deployment framework.
 
 ## Essential for Large Model Training
 - **ZeRO-3 + Offloading + Gradient Checkpointing**
+
+
+---
+
+
+
+## 🎯 Roadmap
+
+-
+
+---
+
+## 📜 License
+
+GRAFT is released under the **MIT License**.
+
+---
+
+## 💡 Contributing
+
+We welcome contributions! Please submit issues and pull requests on our [GitHub repository](https://github.com/HyunwooCho/graft).
+
+---
+
+## 📞 Contact
+
+For questions and discussions, join our community on Discord or open an issue on GitHub.
+
+
 
 
 
